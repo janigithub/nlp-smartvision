@@ -80,6 +80,7 @@ static void usage(char *command)
 {
   printf(("\n Usage: %s [OPTION] [arg1] [arg2]  \n \n"), command);
 	printf("%-50s%-100s\n", "-h (or) --help", "help");
+	printf("%-50s%-100s\n", "-c (or) --custom", "custom testing");
 	printf("%-50s%-100s\n", "-m (or) --mipi <isp/rpi>", "test the application with live video from mipi cameras rpi(default)/isp");
 	printf("%-50s%-100s\n", "-u (or) --usb", "test the application with live video from USB camera");
 	printf("%-50s%-100s\n", "-f (or) --file-audio  <testing_list>.txt", "test the keyword spotting with audio files listed in the .txt file");
@@ -244,6 +245,14 @@ int main(int argc, char *argv[])
       FD.join();
       break;
     }
+    case 'c':
+      printf("\r\nISE : Entered main(), switch case for custom option\r\n");
+      thread CA(Capture_Audio);     // Start Capturing audio in live
+      thread KWS(Keyword_Spotting); // Start Detecting the keyword
+      CA.join();
+      KWS.join();
+      break;
+    }		    
     case 't':
       if (argc != 4)
       {
