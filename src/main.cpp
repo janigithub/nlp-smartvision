@@ -246,6 +246,7 @@ int main(int argc, char *argv[])
       break;
     }
     case 'c':
+    {		
       printf("\r\nISE : Entered main(), switch case for custom option\r\n");
       thread CA(Capture_Audio);     // Start Capturing audio in live
       thread KWS(Keyword_Spotting); // Start Detecting the keyword
