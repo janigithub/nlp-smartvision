@@ -119,8 +119,9 @@ int main(int argc, char *argv[])
   int option_index, c;
   static const char short_options[] = "hmuf:tv";
   static const struct option long_options[] = {
-      {"help", 0, 0, 'h'}, {"mipi", 0, 0, 'm'}, {"usb", 0, 0, 'u'}, {"file-audio", 1, 0, 'f'}, {"test", 0, 0, 't'}, {"verbose", 0, 0, 'v'}, {0, 0, 0, 0}};
+      {"help", 0, 0, 'h'}, {"custom", 0, 0, 'c'}, {"mipi", 0, 0, 'm'}, {"usb", 0, 0, 'u'}, {"file-audio", 1, 0, 'f'}, {"test", 0, 0, 't'}, {"verbose", 0, 0, 'v'}, {0, 0, 0, 0}};
 
+  printf("\r\n ISE: nlp-smartvision : Entered main()\r\n");
   if (argc == 1 || argc > 4)
   {
     usage(command); // print the usage of application
@@ -247,11 +248,12 @@ int main(int argc, char *argv[])
     }
     case 'c':
     {		
-      printf("\r\nISE : Entered main(), switch case for custom option\r\n");
+      printf("\r\nISE : Entered, switch case for custom option\r\n");
       thread CA(Capture_Audio);     // Start Capturing audio in live
       thread KWS(Keyword_Spotting); // Start Detecting the keyword
       CA.join();
       KWS.join();
+      printf("\r\nISE : Exitting, switch case for custom option\r\n");
       break;
     }		    
     case 't':
